@@ -1,0 +1,235 @@
+@prefix : <https://w3id.org/iprok/schedule#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/iprok#hasDescription> rdfs:domain :Task .
+
+<https://w3id.org/iprok#hasGlobalId> rdfs:domain :Task .
+
+<https://w3id.org/iprok#hasId> rdfs:domain :Task .
+
+<https://w3id.org/iprok#hasName> rdfs:domain :Task .
+
+<https://w3id.org/iprok/schedule> a owl:Ontology ;
+    owl:imports <https://w3id.org/iprok> .
+
+:Milestone a owl:Class ;
+    rdfs:label "Milestone"^^xsd:string ;
+    rdfs:comment "A significant event in the project, often with zero duration, conceptualized as a specialized Task."^^xsd:string ;
+    rdfs:subClassOf :Task .
+
+:actualDuration a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "actual Duration"^^xsd:string ;
+    rdfs:comment "The actual time taken to complete a task, represented as a float (e.g., in hours or days)."^^xsd:string ;
+    rdfs:domain :TaskTime ;
+    rdfs:range xsd:decimal .
+
+:actualFinishDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "actual Finish Date"^^xsd:string ;
+    rdfs:comment "The actual finish date and time of a task's timing details."^^xsd:string ;
+    rdfs:domain :TaskTime ;
+    rdfs:range xsd:dateTime .
+
+:actualStartDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "actual Start Date"^^xsd:string ;
+    rdfs:comment "The actual start date and time of a task's timing details."^^xsd:string ;
+    rdfs:domain :TaskTime ;
+    rdfs:range xsd:dateTime .
+
+:assignedTo a owl:ObjectProperty ;
+    rdfs:label "assigned To"^^xsd:string ;
+    rdfs:comment "Links a work package or task to the actor(s) responsible for its execution."^^xsd:string ;
+    rdfs:domain :Task,
+        :WorkPackage ;
+    rdfs:range <https://w3id.org/iprok#Actor> .
+
+:atCompleteDuration a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "at Complete Duration"^^xsd:string ;
+    rdfs:comment "The total estimated duration of a task upon completion, represented as a float (e.g., in hours or days)."^^xsd:string ;
+    rdfs:domain :TaskTime ;
+    rdfs:range xsd:decimal .
+
+:hasConstraint a owl:ObjectProperty ;
+    rdfs:label "has Constraint"^^xsd:string ;
+    rdfs:comment "Links a task to a constraint that applies to it."^^xsd:string ;
+    rdfs:domain :Task ;
+    rdfs:range <https://w3id.org/iprok#Constraint> .
+
+:hasSubTask a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "has Sub Task"^^xsd:string ;
+    rdfs:comment "Links a summary task to its sub-tasks, representing task decomposition."^^xsd:string ;
+    rdfs:domain :Task ;
+    rdfs:range :Task .
+
+:hasTask a owl:ObjectProperty ;
+    rdfs:label "has Task"^^xsd:string ;
+    rdfs:comment "Links a WBS element (e.g., work package, summary task) to its constituent tasks."^^xsd:string ;
+    rdfs:domain :WBS_Element ;
+    rdfs:range :Task .
+
+:hasTaskTime a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has Task Time"^^xsd:string ;
+    rdfs:comment "Links a task to its associated TaskTime entity which holds detailed temporal attributes."^^xsd:string ;
+    rdfs:domain :Task ;
+    rdfs:range :TaskTime .
+
+:hasWBS a owl:ObjectProperty ;
+    rdfs:label "has WBS"^^xsd:string ;
+    rdfs:comment "Links a work package to its sub-elements within the Work Breakdown Structure."^^xsd:string ;
+    rdfs:domain :WorkPackage ;
+    rdfs:range :WBS_Element .
+
+:hasWorkPackage a owl:ObjectProperty ;
+    rdfs:label "has Work Package"^^xsd:string ;
+    rdfs:comment "Links a project to its constituent work packages."^^xsd:string ;
+    rdfs:domain :Project ;
+    rdfs:range :WorkPackage .
+
+:isCriticalTask a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "is Critical Task"^^xsd:string ;
+    rdfs:comment "A boolean flag indicating if the task is on the critical path of the schedule."^^xsd:string ;
+    rdfs:domain :Task ;
+    rdfs:range xsd:boolean .
+
+:isMilestone a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "is Milestone"^^xsd:string ;
+    rdfs:comment "A boolean flag indicating if a task represents a milestone event."^^xsd:string ;
+    rdfs:domain :Task ;
+    rdfs:range xsd:boolean .
+
+:lagTime a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "lag Time"^^xsd:string ;
+    rdfs:comment "The duration of lag (positive value) or lead (negative value) in a task dependency, represented as a float (e.g., in hours or days)."^^xsd:string ;
+    rdfs:domain :TaskDependency ;
+    rdfs:range xsd:decimal .
+
+:plannedFinishDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "planned Finish Date"^^xsd:string ;
+    rdfs:comment "The planned or scheduled finish date and time for a task's timing details."^^xsd:string ;
+    rdfs:domain :TaskTime ;
+    rdfs:range xsd:dateTime .
+
+:plannedStartDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "planned Start Date"^^xsd:string ;
+    rdfs:comment "The planned or scheduled start date and time for a task's timing details."^^xsd:string ;
+    rdfs:domain :TaskTime ;
+    rdfs:range xsd:dateTime .
+
+:projectAddress a owl:DatatypeProperty ;
+    rdfs:label "project Address"^^xsd:string ;
+    rdfs:comment "The physical or site address of the project."^^xsd:string ;
+    rdfs:domain :Project ;
+    rdfs:range xsd:string .
+
+:projectCategory a owl:DatatypeProperty ;
+    rdfs:label "project Category"^^xsd:string ;
+    rdfs:comment "The category classifying the project (e.g., residential, commercial, research)."^^xsd:string ;
+    rdfs:domain :Project ;
+    rdfs:range xsd:string .
+
+:projectOwner a owl:DatatypeProperty ;
+    rdfs:label "project Owner"^^xsd:string ;
+    rdfs:comment "The entity (individual or organization) that owns or commissions the project."^^xsd:string ;
+    rdfs:domain :Project ;
+    rdfs:range xsd:string .
+
+:remainingDuration a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "remaining Duration"^^xsd:string ;
+    rdfs:comment "The estimated time remaining to complete a task, represented as a float (e.g., in hours or days)."^^xsd:string ;
+    rdfs:domain :TaskTime ;
+    rdfs:range xsd:decimal .
+
+:scheduleDuration a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "schedule Duration"^^xsd:string ;
+    rdfs:comment "The planned duration of a task, typically represented as a float (e.g., in hours or days). Define unit context separately or in descriptions."^^xsd:string ;
+    rdfs:domain :TaskTime ;
+    rdfs:range xsd:decimal .
+
+:taskPriority a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "task Priority"^^xsd:string ;
+    rdfs:comment "A numerical or categorical priority assigned to a task."^^xsd:string ;
+    rdfs:domain :Task ;
+    rdfs:range xsd:integer .
+
+:taskRelationshipType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "task Relationship Type"^^xsd:string ;
+    rdfs:comment "The type of logical relationship between two tasks in a dependency (e.g., FS for Finish-to-Start)."^^xsd:string ;
+    rdfs:domain :TaskDependency ;
+    rdfs:range xsd:string .
+
+:hasPredecessorDependency a owl:ObjectProperty ;
+    rdfs:label "has Predecessor Dependency"^^xsd:string ;
+    rdfs:comment "Links a task (as the successor) to a TaskDependency object representing a relationship with a predecessor task."^^xsd:string ;
+    rdfs:domain :Task ;
+    rdfs:range :TaskDependency ;
+    owl:inverseOf :linksToSuccessorTask .
+
+:hasSuccessorDependency a owl:ObjectProperty ;
+    rdfs:label "has Successor Dependency"^^xsd:string ;
+    rdfs:comment "Links a task (as the predecessor) to a TaskDependency object representing a relationship with a successor task."^^xsd:string ;
+    rdfs:domain :Task ;
+    rdfs:range :TaskDependency ;
+    owl:inverseOf :linksToPredecessorTask .
+
+:linksToPredecessorTask a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "links To Predecessor Task"^^xsd:string ;
+    rdfs:comment "Within a TaskDependency object, this property points to the actual predecessor Task."^^xsd:string ;
+    rdfs:domain :TaskDependency ;
+    rdfs:range :Task ;
+    owl:inverseOf :hasSuccessorDependency .
+
+:linksToSuccessorTask a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "links To Successor Task"^^xsd:string ;
+    rdfs:comment "Within a TaskDependency object, this property points to the actual successor Task."^^xsd:string ;
+    rdfs:domain :TaskDependency ;
+    rdfs:range :Task ;
+    owl:inverseOf :hasPredecessorDependency .
+
+:WorkPackage a owl:Class ;
+    rdfs:label "Work Package"^^xsd:string ;
+    rdfs:comment "A significant grouping of related tasks, often a major deliverable or phase, as a type of WBS Element."^^xsd:string ;
+    rdfs:subClassOf :WBS_Element .
+
+:Project a owl:Class ;
+    rdfs:label "Project"^^xsd:string ;
+    rdfs:comment "The overarching container for all project-related information."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+:WBS_Element a owl:Class ;
+    rdfs:label "WBS Element"^^xsd:string ;
+    rdfs:comment "A general class for any component or deliverable within a project's Work Breakdown Structure. It is a fundamental IproK entity."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+:TaskDependency a owl:Class ;
+    rdfs:label "Task Dependency"^^xsd:string ;
+    rdfs:comment "Represents logical relationships between tasks (referred to as TaskRel in Module.docx Fig 3)."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+:TaskTime a owl:Class ;
+    rdfs:label "Task Time"^^xsd:string ;
+    rdfs:comment "A class to reify temporal attributes of a Task."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+:Task a owl:Class ;
+    rdfs:label "Task"^^xsd:string ;
+    rdfs:comment "The fundamental unit of work. Can be a summary task or a leaf-level task, as a type of WBS Element."^^xsd:string ;
+    rdfs:subClassOf :WBS_Element .
+

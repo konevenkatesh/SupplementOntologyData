@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="https://w3id.org/iprok/schedule" uri="iprok_schedule.owl"/>
+    <uri id="Imports Wizard Entry" name="https://w3id.org/iprok/schedule" uri="iprok_schedule.owl"/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1748108158895" name="duplicate:https://w3id.org/iprok" uri="iprok.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1748108158895" name="duplicate:https://w3id.org/iprok" uri="iprok_merged.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1748108158895" name="https://w3id.org/iprok/cost" uri="iprok_cost.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1748108158895" name="https://w3id.org/iprok/integrated" uri="iprok_integrated.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1748108158895" name="https://w3id.org/iprok/resource" uri="iprok_resource.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1748108158895" name="https://w3id.org/iprok/schedule" uri="iprok_schedule.owl"/>
+    </group>
+</catalog>

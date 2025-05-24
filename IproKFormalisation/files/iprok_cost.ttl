@@ -1,0 +1,99 @@
+@prefix : <https://w3id.org/iprok/cost#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/iprok#hasId> rdfs:domain :CostItem .
+
+<https://w3id.org/iprok#hasName> rdfs:domain :CostItem .
+
+<https://w3id.org/iprok/cost> a owl:Ontology ;
+    owl:imports <https://w3id.org/iprok> .
+
+:actualCostAmount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "actual Cost Amount"^^xsd:string ;
+    rdfs:comment "The actual monetary amount incurred for a specific cost item."^^xsd:string ;
+    rdfs:domain :CostItem ;
+    rdfs:range xsd:decimal .
+
+:atCompleteCostAmount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "at Complete Cost Amount"^^xsd:string ;
+    rdfs:comment "The total estimated monetary amount for a cost item upon its completion (Estimate At Completion - EAC)."^^xsd:string ;
+    rdfs:domain :CostItem ;
+    rdfs:range xsd:decimal .
+
+:budgetedCostAmount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "budgeted Cost Amount"^^xsd:string ;
+    rdfs:comment "The planned or allocated monetary amount for a specific cost item."^^xsd:string ;
+    rdfs:domain :CostItem ;
+    rdfs:range xsd:decimal .
+
+:hasCostCategory a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has Cost Category"^^xsd:string ;
+    rdfs:comment "Links a cost item to its broader cost category (e.g., direct, indirect)."^^xsd:string ;
+    rdfs:domain :CostItem ;
+    rdfs:range :CostCategory .
+
+:hasCostType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has Cost Type"^^xsd:string ;
+    rdfs:comment "Links a cost item to its specific classification or type (e.g., LaborCost, MaterialCost)."^^xsd:string ;
+    rdfs:domain :CostItem ;
+    rdfs:range :CostType .
+
+:remainingCostAmount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "remaining Cost Amount"^^xsd:string ;
+    rdfs:comment "The estimated monetary amount remaining to be spent for a cost item (often calculated)."^^xsd:string ;
+    rdfs:domain :CostItem ;
+    rdfs:range xsd:decimal .
+
+:vendorName a owl:DatatypeProperty ;
+    rdfs:label "vendor Name"^^xsd:string ;
+    rdfs:comment "The name of the vendor or supplier associated with a specific cost item."^^xsd:string ;
+    rdfs:domain :CostItem ;
+    rdfs:range xsd:string .
+
+:CostCategory a owl:Class ;
+    rdfs:label "Cost Category"^^xsd:string ;
+    rdfs:comment "A broader classification for costs, such as direct, indirect, fixed, or variable costs."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+:EquipmentCost a owl:Class ;
+    rdfs:label "Equipment Cost"^^xsd:string ;
+    rdfs:comment "A type of cost associated with the rental, purchase, or operation of equipment."^^xsd:string ;
+    rdfs:subClassOf :CostType .
+
+:ExpenseItem a owl:Class ;
+    rdfs:label "Expense Item"^^xsd:string ;
+    rdfs:comment "A classification for miscellaneous or other direct costs not falling under labor, equipment, or material categories."^^xsd:string ;
+    rdfs:subClassOf :CostType .
+
+:LaborCost a owl:Class ;
+    rdfs:label "Labor Cost"^^xsd:string ;
+    rdfs:comment "A type of cost specifically related to human effort, wages, and salaries."^^xsd:string ;
+    rdfs:subClassOf :CostType .
+
+:MaterialCost a owl:Class ;
+    rdfs:label "Material Cost"^^xsd:string ;
+    rdfs:comment "A type of cost related to consumable supplies, components, or raw materials."^^xsd:string ;
+    rdfs:subClassOf :CostType .
+
+:CostType a owl:Class ;
+    rdfs:label "Cost Type"^^xsd:string ;
+    rdfs:comment "The classification of a cost based on its nature (e.g., labor, material, expense)."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+:CostItem a owl:Class ;
+    rdfs:label "Cost Item"^^xsd:string ;
+    rdfs:comment "A specific item of cost incurred or budgeted within the project."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :LaborCost :EquipmentCost :MaterialCost :ExpenseItem ) .
+

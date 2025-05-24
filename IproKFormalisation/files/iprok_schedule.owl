@@ -1,0 +1,485 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/iprok/schedule#"
+     xml:base="https://w3id.org/iprok/schedule"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="https://w3id.org/iprok/schedule"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#assignedTo -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#assignedTo">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#WorkPackage"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok#Actor"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a work package or task to the actor(s) responsible for its execution.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">assigned To</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#hasConstraint -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#hasConstraint">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok#Constraint"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a task to a constraint that applies to it.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has Constraint</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#hasPredecessorDependency -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#hasPredecessorDependency">
+        <owl:inverseOf rdf:resource="https://w3id.org/iprok/schedule#linksToSuccessorTask"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/schedule#TaskDependency"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a task (as the successor) to a TaskDependency object representing a relationship with a predecessor task.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has Predecessor Dependency</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#hasSubTask -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#hasSubTask">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a summary task to its sub-tasks, representing task decomposition.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has Sub Task</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#hasSuccessorDependency -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#hasSuccessorDependency">
+        <owl:inverseOf rdf:resource="https://w3id.org/iprok/schedule#linksToPredecessorTask"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/schedule#TaskDependency"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a task (as the predecessor) to a TaskDependency object representing a relationship with a successor task.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has Successor Dependency</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#hasTask -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#hasTask">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#WBS_Element"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a WBS element (e.g., work package, summary task) to its constituent tasks.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has Task</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#hasTaskTime -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#hasTaskTime">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/schedule#TaskTime"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a task to its associated TaskTime entity which holds detailed temporal attributes.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has Task Time</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#hasWBS -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#hasWBS">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#WorkPackage"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/schedule#WBS_Element"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a work package to its sub-elements within the Work Breakdown Structure.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has WBS</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#hasWorkPackage -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#hasWorkPackage">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Project"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/schedule#WorkPackage"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a project to its constituent work packages.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has Work Package</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#linksToPredecessorTask -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#linksToPredecessorTask">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskDependency"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Within a TaskDependency object, this property points to the actual predecessor Task.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">links To Predecessor Task</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#linksToSuccessorTask -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/schedule#linksToSuccessorTask">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskDependency"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Within a TaskDependency object, this property points to the actual successor Task.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">links To Successor Task</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/iprok#hasDescription -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok#hasDescription">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok#hasGlobalId -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok#hasGlobalId">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok#hasId -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok#hasId">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok#hasName -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok#hasName">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#actualDuration -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#actualDuration">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The actual time taken to complete a task, represented as a float (e.g., in hours or days).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">actual Duration</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#actualFinishDate -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#actualFinishDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The actual finish date and time of a task&apos;s timing details.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">actual Finish Date</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#actualStartDate -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#actualStartDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The actual start date and time of a task&apos;s timing details.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">actual Start Date</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#atCompleteDuration -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#atCompleteDuration">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The total estimated duration of a task upon completion, represented as a float (e.g., in hours or days).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">at Complete Duration</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#isCriticalTask -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#isCriticalTask">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A boolean flag indicating if the task is on the critical path of the schedule.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">is Critical Task</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#isMilestone -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#isMilestone">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A boolean flag indicating if a task represents a milestone event.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">is Milestone</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#lagTime -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#lagTime">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskDependency"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The duration of lag (positive value) or lead (negative value) in a task dependency, represented as a float (e.g., in hours or days).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lag Time</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#plannedFinishDate -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#plannedFinishDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The planned or scheduled finish date and time for a task&apos;s timing details.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">planned Finish Date</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#plannedStartDate -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#plannedStartDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The planned or scheduled start date and time for a task&apos;s timing details.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">planned Start Date</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#projectAddress -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#projectAddress">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Project"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The physical or site address of the project.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">project Address</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#projectCategory -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#projectCategory">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Project"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The category classifying the project (e.g., residential, commercial, research).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">project Category</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#projectOwner -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#projectOwner">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Project"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The entity (individual or organization) that owns or commissions the project.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">project Owner</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#remainingDuration -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#remainingDuration">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The estimated time remaining to complete a task, represented as a float (e.g., in hours or days).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">remaining Duration</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#scheduleDuration -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#scheduleDuration">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The planned duration of a task, typically represented as a float (e.g., in hours or days). Define unit context separately or in descriptions.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">schedule Duration</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#taskPriority -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#taskPriority">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A numerical or categorical priority assigned to a task.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">task Priority</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#taskRelationshipType -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/schedule#taskRelationshipType">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/schedule#TaskDependency"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The type of logical relationship between two tasks in a dependency (e.g., FS for Finish-to-Start).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">task Relationship Type</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/iprok#Actor -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok#Actor"/>
+    
+
+
+    <!-- https://w3id.org/iprok#Constraint -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok#Constraint"/>
+    
+
+
+    <!-- https://w3id.org/iprok#IproKThing -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok#IproKThing"/>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#Milestone -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/schedule#Milestone">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok/schedule#Task"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A significant event in the project, often with zero duration, conceptualized as a specialized Task.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Milestone</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#Project -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/schedule#Project">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok#IproKThing"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The overarching container for all project-related information.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Project</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#Task -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/schedule#Task">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok/schedule#WBS_Element"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The fundamental unit of work. Can be a summary task or a leaf-level task, as a type of WBS Element.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Task</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#TaskDependency -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/schedule#TaskDependency">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok#IproKThing"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Represents logical relationships between tasks (referred to as TaskRel in Module.docx Fig 3).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Task Dependency</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#TaskTime -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/schedule#TaskTime">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok#IproKThing"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A class to reify temporal attributes of a Task.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Task Time</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#WBS_Element -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/schedule#WBS_Element">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok#IproKThing"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A general class for any component or deliverable within a project&apos;s Work Breakdown Structure. It is a fundamental IproK entity.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WBS Element</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/schedule#WorkPackage -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/schedule#WorkPackage">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok/schedule#WBS_Element"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A significant grouping of related tasks, often a major deliverable or phase, as a type of WBS Element.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Work Package</rdfs:label>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

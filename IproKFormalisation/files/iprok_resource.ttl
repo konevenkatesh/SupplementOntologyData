@@ -1,0 +1,149 @@
+@prefix : <https://w3id.org/iprok/resource#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/iprok#hasDescription> rdfs:domain :Resource .
+
+<https://w3id.org/iprok#hasGlobalId> rdfs:domain :Resource .
+
+<https://w3id.org/iprok#hasId> rdfs:domain :Resource .
+
+<https://w3id.org/iprok#hasName> rdfs:domain :Resource .
+
+<https://w3id.org/iprok/resource> a owl:Ontology ;
+    owl:imports <https://w3id.org/iprok> .
+
+:actualUnits a owl:DatatypeProperty ;
+    rdfs:label "actual Units"^^xsd:string ;
+    rdfs:comment "The actual quantity of resource units consumed or utilized. (Note: Often better placed on a ResourceAllocation)."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range xsd:decimal .
+
+:atCompleteUnits a owl:DatatypeProperty ;
+    rdfs:label "at Complete Units"^^xsd:string ;
+    rdfs:comment "The total estimated quantity of resource units at the completion of its assignment. (Note: Often better placed on a ResourceAllocation)."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range xsd:decimal .
+
+:baseRate a owl:DatatypeProperty ;
+    rdfs:label "base Rate"^^xsd:string ;
+    rdfs:comment "The standard cost rate for a resource, typically per unit of time or quantity."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range xsd:decimal .
+
+:budgetedUnits a owl:DatatypeProperty ;
+    rdfs:label "budgeted Units"^^xsd:string ;
+    rdfs:comment "The planned or budgeted quantity of resource units. (Note: Often better placed on a ResourceAllocation linking resource to task)."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range xsd:decimal .
+
+:currency a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "currency"^^xsd:string ;
+    rdfs:comment "The currency code (e.g., USD, EUR) for monetary values related to the resource, like its base rate."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range xsd:string .
+
+:effectiveDateForRate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "effective Date For Rate"^^xsd:string ;
+    rdfs:comment "The date from which the specified base rate for a resource becomes effective."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range xsd:date .
+
+:hasResourceConstraints a owl:ObjectProperty ;
+    rdfs:label "has Resource Constraints"^^xsd:string ;
+    rdfs:comment "Links a resource to specific constraints that apply to its availability or usage."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range :ResourceConstraint .
+
+:hasResourceType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has Resource Type"^^xsd:string ;
+    rdfs:comment "Links a resource to its specific classification or type (e.g., LaborResource, EquipmentResource)."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range :ResourceType .
+
+:hasTrackingTag a owl:ObjectProperty ;
+    rdfs:label "has Tracking Tag"^^xsd:string ;
+    rdfs:comment "Links a resource to one or more tracking tags used for its identification and monitoring."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range :TrackingTag .
+
+:isPrimaryResource a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "is Primary Resource"^^xsd:string ;
+    rdfs:comment "A boolean flag indicating if this resource is considered the primary one for an assignment or task."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range xsd:boolean .
+
+:maxUnits a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "max Units"^^xsd:string ;
+    rdfs:comment "The maximum available units of a resource, often per a specific time period (e.g., maximum work hours per day for a labor resource)."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range xsd:decimal .
+
+:measuredIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "measured In"^^xsd:string ;
+    rdfs:comment "Links a resource to the unit of measure used for its quantification."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range :Units .
+
+:remainingUnits a owl:DatatypeProperty ;
+    rdfs:label "remaining Units"^^xsd:string ;
+    rdfs:comment "The estimated quantity of resource units still required or available. (Note: Often better placed on a ResourceAllocation)."^^xsd:string ;
+    rdfs:domain :Resource ;
+    rdfs:range xsd:decimal .
+
+:EquipmentResource a owl:Class ;
+    rdfs:label "Equipment Resource"^^xsd:string ;
+    rdfs:comment "A type of resource representing machinery, tools, or other equipment."^^xsd:string ;
+    rdfs:subClassOf :ResourceType .
+
+:LaborResource a owl:Class ;
+    rdfs:label "Labor Resource"^^xsd:string ;
+    rdfs:comment "A type of resource representing human effort, skills, or services."^^xsd:string ;
+    rdfs:subClassOf :ResourceType .
+
+:MaterialResource a owl:Class ;
+    rdfs:label "Material Resource"^^xsd:string ;
+    rdfs:comment "A type of resource representing consumable supplies or raw materials."^^xsd:string ;
+    rdfs:subClassOf :ResourceType .
+
+:ResourceConstraint a owl:Class ;
+    rdfs:label "Resource Constraint"^^xsd:string ;
+    rdfs:comment "A specific limitation or condition affecting the use, availability, or allocation of a resource."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#Constraint> .
+
+:TrackingTag a owl:Class ;
+    rdfs:label "Tracking Tag"^^xsd:string ;
+    rdfs:comment "An identifier or device (e.g., RFID, barcode) used for monitoring and tracking a resource."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+:Units a owl:Class ;
+    rdfs:label "Units"^^xsd:string ;
+    rdfs:comment "The unit of measure for quantifying a resource's amount, capacity, or rate (e.g., hours, kg, items)."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+:UserDefinedResource a owl:Class ;
+    rdfs:label "User Defined Resource"^^xsd:string ;
+    rdfs:comment "A flexible type for resources not covered by standard classifications like labor, equipment, or material."^^xsd:string ;
+    rdfs:subClassOf :ResourceType .
+
+:ResourceType a owl:Class ;
+    rdfs:label "Resource Type"^^xsd:string ;
+    rdfs:comment "The classification of a resource (e.g., labor, equipment, material)."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+:Resource a owl:Class ;
+    rdfs:label "Resource"^^xsd:string ;
+    rdfs:comment "An asset, item, or person required for or consumed by project tasks."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :LaborResource :EquipmentResource :MaterialResource :UserDefinedResource ) .
+

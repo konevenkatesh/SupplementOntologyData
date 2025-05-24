@@ -1,0 +1,76 @@
+@prefix : <https://w3id.org/iprok/integrated#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/iprok/integrated> a owl:Ontology ;
+    owl:imports <https://w3id.org/iprok>,
+        <https://w3id.org/iprok/cost>,
+        <https://w3id.org/iprok/resource>,
+        <https://w3id.org/iprok/schedule> .
+
+:allocatedUnits a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "allocated Units"^^xsd:string ;
+    rdfs:comment "The specific quantity or number of units of a resource assigned in this allocation (e.g., 40 hours, 5 pieces)."^^xsd:string ;
+    rdfs:domain :ResourceAllocation ;
+    rdfs:range xsd:decimal .
+
+:allocationActualStartDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "allocation Actual Start Date"^^xsd:string ;
+    rdfs:comment "The actual start date and time of this specific resource allocation."^^xsd:string ;
+    rdfs:domain :ResourceAllocation ;
+    rdfs:range xsd:dateTime .
+
+:allocationAssignsResource a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "allocation Assigns Resource"^^xsd:string ;
+    rdfs:comment "Links this resource allocation instance to the specific Resource being assigned."^^xsd:string ;
+    rdfs:domain :ResourceAllocation ;
+    rdfs:range <https://w3id.org/iprok/resource#Resource> .
+
+:allocationForTask a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "allocation For Task"^^xsd:string ;
+    rdfs:comment "Links this resource allocation instance to the specific Task it is assigned to."^^xsd:string ;
+    rdfs:domain :ResourceAllocation ;
+    rdfs:range <https://w3id.org/iprok/schedule#Task> .
+
+:allocationPlannedFinishDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "allocation Planned Finish Date"^^xsd:string ;
+    rdfs:comment "The planned finish date and time for this specific resource allocation."^^xsd:string ;
+    rdfs:domain :ResourceAllocation ;
+    rdfs:range xsd:dateTime .
+
+:allocationPlannedStartDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "allocation Planned Start Date"^^xsd:string ;
+    rdfs:comment "The planned start date and time for this specific resource allocation."^^xsd:string ;
+    rdfs:domain :ResourceAllocation ;
+    rdfs:range xsd:dateTime .
+
+:resourceAllocationIncursCostItem a owl:ObjectProperty ;
+    rdfs:label "resource Allocation Incurs Cost Item"^^xsd:string ;
+    rdfs:comment "Links a specific ResourceAllocation to a CostItem that is incurred due to the usage of the allocated resource."^^xsd:string ;
+    rdfs:domain :ResourceAllocation ;
+    rdfs:range <https://w3id.org/iprok/cost#CostItem> .
+
+:taskGeneratesCostItem a owl:ObjectProperty ;
+    rdfs:label "task Generates Cost Item"^^xsd:string ;
+    rdfs:comment "Links a Task to a CostItem that is generated or incurred as a result of performing the task."^^xsd:string ;
+    rdfs:domain <https://w3id.org/iprok/schedule#Task> ;
+    rdfs:range <https://w3id.org/iprok/cost#CostItem> .
+
+:taskHasResourceAllocation a owl:ObjectProperty ;
+    rdfs:label "task Has Resource Allocation"^^xsd:string ;
+    rdfs:comment "Links a Task to its specific ResourceAllocation instance(s), detailing how resources are assigned to it."^^xsd:string ;
+    rdfs:domain <https://w3id.org/iprok/schedule#Task> ;
+    rdfs:range :ResourceAllocation .
+
+:ResourceAllocation a owl:Class ;
+    rdfs:label "Resource Allocation"^^xsd:string ;
+    rdfs:comment "Represents the specific assignment of a quantity of a resource to a task over a defined period, detailing how resources are utilized for work."^^xsd:string ;
+    rdfs:subClassOf <https://w3id.org/iprok#IproKThing> .
+

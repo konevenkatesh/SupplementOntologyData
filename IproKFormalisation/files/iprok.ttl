@@ -1,0 +1,64 @@
+@prefix : <https://w3id.org/iprok#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/iprok> a owl:Ontology .
+
+:Actor a owl:Class ;
+    rdfs:label "Actor"^^xsd:string ;
+    rdfs:comment "Represents an individual, group, organization, or system that participates in or is responsible for processes, tasks, or owns resources."^^xsd:string ;
+    rdfs:subClassOf :IproKThing .
+
+:Calendar a owl:Class ;
+    rdfs:label "Calendar"^^xsd:string ;
+    rdfs:comment "Defines working and non-working times, holidays, and project-specific work schedules."^^xsd:string ;
+    rdfs:subClassOf :IproKThing .
+
+:constraintDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "constraint Date"^^xsd:string ;
+    rdfs:comment "The specific date associated with a constraint."^^xsd:string ;
+    rdfs:domain :Constraint ;
+    rdfs:range xsd:dateTime .
+
+:constraintType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "constraint Type"^^xsd:string ;
+    rdfs:comment "The type of constraint (e.g., 'MustStartOn', 'FinishNoLaterThan')."^^xsd:string ;
+    rdfs:domain :Constraint ;
+    rdfs:range xsd:string .
+
+:hasDescription a owl:DatatypeProperty ;
+    rdfs:label "has Description"^^xsd:string ;
+    rdfs:comment "A textual description providing further details about an entity."^^xsd:string ;
+    rdfs:range xsd:string .
+
+:hasGlobalId a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has Global Id"^^xsd:string ;
+    rdfs:comment "A globally unique identifier for an entity."^^xsd:string ;
+    rdfs:range xsd:string .
+
+:hasId a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has Id"^^xsd:string ;
+    rdfs:comment "A local or project-specific identifier for an entity."^^xsd:string ;
+    rdfs:range xsd:string .
+
+:hasName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has Name"^^xsd:string ;
+    rdfs:comment "The common or human-readable name of an entity."^^xsd:string ;
+    rdfs:range xsd:string .
+
+:Constraint a owl:Class ;
+    rdfs:label "Constraint"^^xsd:string ;
+    rdfs:comment "Represents specific date or condition constraints applied to tasks or other entities."^^xsd:string ;
+    rdfs:subClassOf :IproKThing .
+
+:IproKThing a owl:Class ;
+    rdfs:label "IproK Thing"^^xsd:string ;
+    rdfs:comment "A base class for all entities specific to the IproK Ontology."^^xsd:string ;
+    rdfs:subClassOf owl:Thing .
+

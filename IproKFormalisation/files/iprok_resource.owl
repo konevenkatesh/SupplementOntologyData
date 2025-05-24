@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/iprok/resource#"
+     xml:base="https://w3id.org/iprok/resource"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="https://w3id.org/iprok/resource"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/iprok/resource#hasResourceConstraints -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/resource#hasResourceConstraints">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/resource#ResourceConstraint"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a resource to specific constraints that apply to its availability or usage.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has Resource Constraints</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#hasResourceType -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/resource#hasResourceType">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/resource#ResourceType"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a resource to its specific classification or type (e.g., LaborResource, EquipmentResource).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has Resource Type</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#hasTrackingTag -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/resource#hasTrackingTag">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/resource#TrackingTag"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a resource to one or more tracking tags used for its identification and monitoring.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has Tracking Tag</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#measuredIn -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/iprok/resource#measuredIn">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="https://w3id.org/iprok/resource#Units"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Links a resource to the unit of measure used for its quantification.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">measured In</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/iprok#hasDescription -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok#hasDescription">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok#hasGlobalId -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok#hasGlobalId">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok#hasId -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok#hasId">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok#hasName -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok#hasName">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#actualUnits -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/resource#actualUnits">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The actual quantity of resource units consumed or utilized. (Note: Often better placed on a ResourceAllocation).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">actual Units</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#atCompleteUnits -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/resource#atCompleteUnits">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The total estimated quantity of resource units at the completion of its assignment. (Note: Often better placed on a ResourceAllocation).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">at Complete Units</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#baseRate -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/resource#baseRate">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The standard cost rate for a resource, typically per unit of time or quantity.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">base Rate</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#budgetedUnits -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/resource#budgetedUnits">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The planned or budgeted quantity of resource units. (Note: Often better placed on a ResourceAllocation linking resource to task).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">budgeted Units</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#currency -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/resource#currency">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The currency code (e.g., USD, EUR) for monetary values related to the resource, like its base rate.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">currency</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#effectiveDateForRate -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/resource#effectiveDateForRate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The date from which the specified base rate for a resource becomes effective.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">effective Date For Rate</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#isPrimaryResource -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/resource#isPrimaryResource">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A boolean flag indicating if this resource is considered the primary one for an assignment or task.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">is Primary Resource</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#maxUnits -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/resource#maxUnits">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The maximum available units of a resource, often per a specific time period (e.g., maximum work hours per day for a labor resource).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">max Units</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#remainingUnits -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/iprok/resource#remainingUnits">
+        <rdfs:domain rdf:resource="https://w3id.org/iprok/resource#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The estimated quantity of resource units still required or available. (Note: Often better placed on a ResourceAllocation).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">remaining Units</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/iprok#Constraint -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok#Constraint"/>
+    
+
+
+    <!-- https://w3id.org/iprok#IproKThing -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok#IproKThing"/>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#EquipmentResource -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/resource#EquipmentResource">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok/resource#ResourceType"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A type of resource representing machinery, tools, or other equipment.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Equipment Resource</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#LaborResource -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/resource#LaborResource">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok/resource#ResourceType"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A type of resource representing human effort, skills, or services.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Labor Resource</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#MaterialResource -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/resource#MaterialResource">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok/resource#ResourceType"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A type of resource representing consumable supplies or raw materials.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Material Resource</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#Resource -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/resource#Resource">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok#IproKThing"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An asset, item, or person required for or consumed by project tasks.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Resource</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#ResourceConstraint -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/resource#ResourceConstraint">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok#Constraint"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A specific limitation or condition affecting the use, availability, or allocation of a resource.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Resource Constraint</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#ResourceType -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/resource#ResourceType">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok#IproKThing"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The classification of a resource (e.g., labor, equipment, material).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Resource Type</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#TrackingTag -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/resource#TrackingTag">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok#IproKThing"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An identifier or device (e.g., RFID, barcode) used for monitoring and tracking a resource.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tracking Tag</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#Units -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/resource#Units">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok#IproKThing"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The unit of measure for quantifying a resource&apos;s amount, capacity, or rate (e.g., hours, kg, items).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Units</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/iprok/resource#UserDefinedResource -->
+
+    <owl:Class rdf:about="https://w3id.org/iprok/resource#UserDefinedResource">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/iprok/resource#ResourceType"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A flexible type for resources not covered by standard classifications like labor, equipment, or material.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">User Defined Resource</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://w3id.org/iprok/resource#EquipmentResource"/>
+            <rdf:Description rdf:about="https://w3id.org/iprok/resource#LaborResource"/>
+            <rdf:Description rdf:about="https://w3id.org/iprok/resource#MaterialResource"/>
+            <rdf:Description rdf:about="https://w3id.org/iprok/resource#UserDefinedResource"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
